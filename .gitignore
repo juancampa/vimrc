@@ -1,12 +1,1 @@
-autoload
-colors
-doc
-ftdetect
-ftplugin
-indent
-plugin
-syntax
-bundle
-undodir
-swapfiles
-.netrwhist
+*
