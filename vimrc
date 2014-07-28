@@ -1,3 +1,5 @@
+set encoding=utf8
+
 " NeoBundle config
 if (has('vim_starting'))
     set nocompatible              " be iMproved
@@ -45,7 +47,10 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/unite.vim'            " Awesomest plugin ever? uber navigation
 NeoBundle 'scrooloose/nerdtree'         " Apparently is The file explorer
-NeoBundle "pangloss/vim-javascript"     " Improved Javascript support
+NeoBundle 'pangloss/vim-javascript'     " Improved Javascript syntax
+NeoBundle 'elzr/vim-json'               " Improved Json syntax
+NeoBundle 'kana/vim-textobj-user'       " Easily create text objects
+NeoBundle 'glts/vim-textobj-comment'    " Comment Text object 
 
 " To try
 NeoBundle 'rking/ag.vim'                " Awesome searching?
@@ -61,7 +66,7 @@ NeoBundle 'tpope/vim-fugitive'          " Git from vim
 " NeoBundle 'nosami/Omnisharp'            " C# intellisense
 NeoBundle 'Valloric/YouCompleteMe'      " Superb code completion
 
-NeoBundle 'd:\git\vim_msbuild', { 'type': 'nosync'}
+" NeoBundle 'd:\git\vim_msbuild', { 'type': 'nosync'}
 
 let g:agprg="C:\\Windows\\System32\\ag.exe --column"
 
@@ -79,7 +84,9 @@ let g:airline_theme = 'jellybeans'
 " Filetype detection including loading of plugins and indentation
 filetype plugin indent on " required!
 
-colorscheme camper                      " My own theme based on BusyBee/Jellybeans
+" colorscheme camper                      " My own theme based on BusyBee/Jellybeans
+colorscheme BusyBee
+
 set number
 set clipboard=unnamed
 set ignorecase
@@ -91,21 +98,25 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
+" Treat Handlebars as HTML
+autocmd BufRead *.handlebars set filetype=html
+
 " Specific configuration for different filetypes
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType stylus setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " Some tags in html are not indented by default.
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc" 
 let g:html_indent_style1 = "inc"
 
-" Adding item in the todo file
+" Managing items in the todo file
 autocmd BufRead *todo.txt nnoremap o o - [ ] 
 autocmd BufRead *todo.txt nnoremap O O - [ ] 
-autocmd BufRead *todo.txt set filetype=markdown
+autocmd BufRead *todo.txt setlocal filetype=markdown
 autocmd BufRead *todo.txt let b:switch_custom_definitions =
     \ [
     \   {
@@ -115,6 +126,7 @@ autocmd BufRead *todo.txt let b:switch_custom_definitions =
     \   },
     \ ]
 
+" Swapping of quote <---> double quotes in javascipt
 autocmd FileType javascript let b:switch_custom_definitions = [ { '"\(.*?\)"': "'\1'", "'\(.*?\)'": '"\1"' } ]
 
 " Wildfire config
