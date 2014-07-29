@@ -1,0 +1,14 @@
+set number
+set hlsearch
+set ignorecase
+set smartcase
+set clipboard=unnamed
+set cursorline
+set backspace=indent,eol,start
+set tabstop=4
+set noexpandtab
+set shiftwidth=4
+set softtabstop=4
+
+autocmd BufWinEnter .c++ set noexpandtab
+autocmd BufWinEnter .h set noexpandtab
