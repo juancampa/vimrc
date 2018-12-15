@@ -1,3 +1,6 @@
+# DEPRECATED: use juancampa/dotfiles instead
+
+
 vimrc
 =====
 
